@@ -27,6 +27,8 @@ const Loader = ({ onFinished }) => {
       const tl = gsap.timeline({
         onComplete: onFinished,
       });
+      // speed everything up by 1.5×
+      tl.timeScale(1.5);
 
       // Animate particles floating
       gsap.to(".particle", {
@@ -162,3 +164,32 @@ const Loader = ({ onFinished }) => {
 };
 
 export default Loader;
+
+export function App() {
+  const [loading, setLoading] = useState(true);
+
+  return (
+    <div className="relative w-full max-h-screen">
+      {/* overlay loader */}
+      <div className={`absolute inset-0 z-50 ${loading ? "" : "hidden"}`}>
+        <Loader onFinished={() => setLoading(false)} />
+      </div>
+      {/* main content (already mounted behind loader) */}
+      {!loading && (
+        <>
+          <CardNav
+            logoAlt="Company Logo"
+            items={items}
+            baseColor="#F1E9D4"
+            menuColor="#222"
+            buttonBgColor="#222"
+            buttonTextColor="#F1E9D4"
+            ease="power3.out"
+            logo={"/logo.png"}
+          />
+          <Home />
+        </>
+      )}
+    </div>
+  );
+}
