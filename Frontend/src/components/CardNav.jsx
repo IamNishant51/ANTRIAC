@@ -11,8 +11,6 @@ const CardNav = ({
   ease = "power3.out",
   baseColor = "#fff",
   menuColor,
-  buttonBgColor,
-  buttonTextColor,
 }) => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -181,7 +179,7 @@ const CardNav = ({
           <button
             type="button"
             className="card-nav-cta-button hidden md:inline-flex items-center gap-2 border-0 rounded-lg px-4 py-2 text-sm font-medium cursor-pointer transition-colors duration-300 group"
-            style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
+            style={{ backgroundColor: "#000", color: "#fff" }}
           >
             <span>Get Started</span>
             <GoArrowUpRight className="transition-transform duration-300 group-hover:rotate-45" />

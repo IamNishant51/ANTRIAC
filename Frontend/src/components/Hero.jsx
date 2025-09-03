@@ -6,15 +6,19 @@ const Hero = () => {
 
   return (
     <section className="relative w-full h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 md:px-8">
+      {/* optional dark overlay for contrast */}
+      <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
+
       {/* background logo */}
       <div
         className="
-          absolute inset-0 
+          absolute inset-0
           bg-[url('/logo.png')] bg-center bg-no-repeat opacity-10
           bg-[length:40%] sm:bg-[length:35%] md:bg-[length:30%] lg:bg-[length:25%]
         "
         aria-hidden="true"
       />
+
       {/* content */}
       <div className="relative z-10 text-center">
         <h1
