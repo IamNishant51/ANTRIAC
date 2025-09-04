@@ -56,6 +56,15 @@ const Hero = () => {
         <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-500 uppercase">
           Indian no 1 luxury watch brand
         </p>
+        <img
+          src="/watch.PNG"
+          alt="Luxury Watch"
+          className="
+            absolute top-1/1 left-1 sm:left-10 md:left-15 lg:left-[-9.5rem]
+            transform -translate-y-1/2 rotate-15
+            w-64 sm:w-64 md:w-80 lg:w-120
+          "
+        />
       </div>
     </section>
   );
