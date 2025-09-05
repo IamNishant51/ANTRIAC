@@ -1,4 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
+import { useGLTF, useAnimations } from "@react-three/drei";
 
 const Hero = () => {
   const name = "ANTRIAC".split("");
@@ -6,29 +8,27 @@ const Hero = () => {
 
   return (
     <section className="relative w-full h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 md:px-8">
-      {/* optional dark overlay for contrast */}
       <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
 
-      {/* background logo */}
       <div
         className="
-          absolute inset-0
+          absolute inset-0 z-20
           bg-[url('/logo.png')] bg-center bg-no-repeat opacity-10
           bg-[length:40%] sm:bg-[length:35%] md:bg-[length:30%] lg:bg-[length:25%]
         "
         aria-hidden="true"
       />
 
-      {/* content */}
-      <div className="relative z-10 text-center">
+      <div className="relative z-30 text-center">
         <h1
           className="
             text-4xl sm:text-5xl md:text-6xl lg:text-8xl 
-            font-sans tracking-[0.6em] text-gray-300 
+            font-sans tracking-[0.6em] 
             mb-2 sm:mb-4
           "
           style={{
             fontFamily: "'Montserrat', sans-serif",
+            color: "#F1E9D4", 
           }}
         >
           {name.map((l, i) => (
@@ -56,18 +56,32 @@ const Hero = () => {
         <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-500 uppercase">
           Indian no 1 luxury watch brand
         </p>
-        <img
-          src="/watch.PNG"
-          alt="Luxury Watch"
-          className="
-            absolute top-1/1 left-1 sm:left-10 md:left-15 lg:left-[-9.5rem]
-            transform -translate-y-1/2 rotate-15
-            w-64 sm:w-64 md:w-80 lg:w-120
-          "
-        />
+      </div>
+
+      <div className="absolute inset-0 flex items-center justify-center z-10">
+        <Canvas>
+          <ambientLight intensity={0.3} /> 
+          <directionalLight position={[5, 5, 5]} intensity={0.8} />{" "}
+          <Suspense fallback={null}>
+            <WatchModel />
+          </Suspense>
+        </Canvas>
       </div>
     </section>
   );
+};
+
+const WatchModel = () => {
+  const { scene, animations } = useGLTF("/mechanical_watch.glb");
+  const { actions } = useAnimations(animations, scene);
+
+  React.useEffect(() => {
+    if (actions) {
+      actions[Object.keys(actions)[0]]?.play();
+    }
+  }, [actions]);
+
+  return <primitive object={scene} scale={1.3} position={[1, 0, 0]} />;
 };
 
 export default Hero;
