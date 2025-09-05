@@ -7,7 +7,10 @@ const Hero = () => {
   const sub = "TIMEPIECES".split("");
 
   return (
-    <section className="relative w-full h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 md:px-8">
+    <section
+      className="relative w-full h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 md:px-8"
+      style={{ userSelect: "none" }} // Disable text selection
+    >
       <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
 
       <div className="relative z-30 text-center">
