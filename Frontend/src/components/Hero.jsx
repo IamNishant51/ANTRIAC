@@ -10,15 +10,6 @@ const Hero = () => {
     <section className="relative w-full h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 md:px-8">
       <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
 
-      <div
-        className="
-          absolute inset-0 z-20
-          bg-[url('/logo.png')] bg-center bg-no-repeat opacity-10
-          bg-[length:40%] sm:bg-[length:35%] md:bg-[length:30%] lg:bg-[length:25%]
-        "
-        aria-hidden="true"
-      />
-
       <div className="relative z-30 text-center">
         <h1
           className="
@@ -28,7 +19,7 @@ const Hero = () => {
           "
           style={{
             fontFamily: "'Montserrat', sans-serif",
-            color: "#F1E9D4", 
+            color: "#F1E9D4",
           }}
         >
           {name.map((l, i) => (
@@ -60,8 +51,8 @@ const Hero = () => {
 
       <div className="absolute inset-0 flex items-center justify-center z-10">
         <Canvas>
-          <ambientLight intensity={0.3} /> 
-          <directionalLight position={[5, 5, 5]} intensity={0.8} />{" "}
+          <ambientLight intensity={0.3} />
+          <directionalLight position={[5, 5, 5]} intensity={0.8} />
           <Suspense fallback={null}>
             <WatchModel />
           </Suspense>
