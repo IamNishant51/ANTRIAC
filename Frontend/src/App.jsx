@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CardNav from "./components/CardNav";
 import Home from "./pages/Home";
 import Loader from "./components/loader";
 import Collection from "./pages/Collection";
+import Lenis from "@studio-freight/lenis";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
+
   const items = [
     {
       label: "About",
@@ -37,6 +39,26 @@ const App = () => {
     },
   ];
 
+  useEffect(() => {
+    // Initialize Lenis
+    const lenis = new Lenis({
+      duration: 1.2, // Smooth scroll duration
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing function
+      smooth: true,
+    });
+
+    // Animation frame loop for Lenis
+    const raf = (time) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy(); // Cleanup Lenis on unmount
+    };
+  }, []);
+
   return (
     <div className="w-full max-h-screen">
       {loading ? (
@@ -54,7 +76,7 @@ const App = () => {
             logo={"/logo.png"}
           />
           <Home />
-          <Collection/>
+          <Collection />
         </>
       )}
     </div>

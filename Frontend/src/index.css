@@ -8,3 +8,14 @@ html, body {
   background: #000;
   color: #fff;
 }
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+body {
+  height: 100vh;
+}
+
+[data-lenis] {
+  scroll-behavior: auto !important; /* Disable native smooth scrolling */
+}
