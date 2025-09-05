@@ -1,6 +1,5 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-// use your own icon import if react-icons is not available
 import { GoArrowUpRight } from "react-icons/go";
 
 const CardNav = ({
@@ -134,9 +133,37 @@ const CardNav = ({
     if (el) cardsRef.current[i] = el;
   };
 
+  // Add scroll animation for the navbar
+  useLayoutEffect(() => {
+    const navEl = navRef.current;
+    if (!navEl) return;
+
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY) {
+        // Scrolling down - hide navbar
+        gsap.to(navEl, { y: "-100%", duration: 0.2, ease: "power2.out" }); // Faster and smoother
+      } else {
+        // Scrolling up - show navbar
+        gsap.to(navEl, { y: "0%", duration: 0.2, ease: "power2.out" }); // Faster and smoother
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div
-      className={`card-nav-container absolute left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] z-[99] top-[1.2em] md:top-[2em] ${className}`}
+      className={`card-nav-container fixed left-1/2 -translate-x-1/2 w-[90%] max-w-[800px] z-[99] top-4 ${className}`} // Adjusted top to 4
     >
       <nav
         ref={navRef}

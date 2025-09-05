@@ -13,13 +13,12 @@ const Hero = () => {
     >
       <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
 
-      <div className="relative z-30 text-center">
+      {/* Text Content */}
+      <div className="relative z-50 text-center">
+        {" "}
+        {/* Increased z-index to 50 */}
         <h1
-          className="
-            text-4xl sm:text-5xl md:text-6xl lg:text-8xl 
-            font-sans tracking-[0.6em] 
-            mb-2 sm:mb-4
-          "
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-sans tracking-[0.6em] mb-2 sm:mb-4"
           style={{
             fontFamily: "'Montserrat', sans-serif",
             color: "#F1E9D4",
@@ -32,11 +31,7 @@ const Hero = () => {
           ))}
         </h1>
         <h2
-          className="
-            text-lg sm:text-xl md:text-2xl lg:text-4xl 
-            font-sans tracking-[0.7em] text-gray-700 
-            mb-4 sm:mb-6
-          "
+          className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-sans tracking-[0.7em] text-gray-700 mb-4 sm:mb-6"
           style={{
             fontFamily: "'Montserrat', sans-serif",
           }}
@@ -52,10 +47,21 @@ const Hero = () => {
         </p>
       </div>
 
+      {/* 3D Model */}
       <div className="absolute inset-0 flex items-center justify-center z-10">
         <Canvas>
+          {/* Ambient light for soft overall illumination */}
           <ambientLight intensity={0.3} />
+          {/* Directional light for highlights */}
           <directionalLight position={[5, 5, 5]} intensity={0.8} />
+          {/* Spot light for focused lighting on the 3D model */}
+          <spotLight
+            position={[2, 5, 2]} // Position of the spot light
+            angle={0.5} // Spread angle of the light
+            penumbra={0.5} // Soft edges
+            intensity={1.5} // Brightness of the light
+            castShadow
+          />
           <Suspense fallback={null}>
             <WatchModel />
           </Suspense>

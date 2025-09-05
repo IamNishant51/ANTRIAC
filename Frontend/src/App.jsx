@@ -2,6 +2,7 @@ import { useState } from "react";
 import CardNav from "./components/CardNav";
 import Home from "./pages/Home";
 import Loader from "./components/loader";
+import Collection from "./pages/Collection";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -53,6 +54,7 @@ const App = () => {
             logo={"/logo.png"}
           />
           <Home />
+          <Collection/>
         </>
       )}
     </div>
