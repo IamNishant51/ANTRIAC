@@ -9,14 +9,12 @@ const Hero = () => {
   return (
     <section
       className="relative w-full h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 md:px-8"
-      style={{ userSelect: "none" }} // Disable text selection
+      style={{ userSelect: "none" }} 
     >
       <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
 
-      {/* Text Content */}
       <div className="relative z-50 text-center">
         {" "}
-        {/* Increased z-index to 50 */}
         <h1
           className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-sans tracking-[0.6em] mb-2 sm:mb-4"
           style={{
@@ -47,19 +45,15 @@ const Hero = () => {
         </p>
       </div>
 
-      {/* 3D Model */}
       <div className="absolute inset-0 flex items-center justify-center z-10">
         <Canvas>
-          {/* Ambient light for soft overall illumination */}
           <ambientLight intensity={0.3} />
-          {/* Directional light for highlights */}
           <directionalLight position={[5, 5, 5]} intensity={0.8} />
-          {/* Spot light for focused lighting on the 3D model */}
           <spotLight
-            position={[2, 5, 2]} // Position of the spot light
-            angle={0.5} // Spread angle of the light
-            penumbra={0.5} // Soft edges
-            intensity={1.5} // Brightness of the light
+            position={[2, 5, 2]} 
+            angle={0.5}
+            penumbra={0.5} 
+            intensity={1.5} 
             castShadow
           />
           <Suspense fallback={null}>

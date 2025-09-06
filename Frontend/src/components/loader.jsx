@@ -11,7 +11,6 @@ const Loader = ({ onFinished }) => {
   const circleRef = useRef();
 
   useEffect(() => {
-    // Create floating particles
     const particleContainer = particlesRef.current;
     for (let i = 0; i < 50; i++) {
       const particle = document.createElement("div");
@@ -27,10 +26,8 @@ const Loader = ({ onFinished }) => {
       const tl = gsap.timeline({
         onComplete: onFinished,
       });
-      // speed everything up by 1.5×
       tl.timeScale(1.5);
 
-      // Animate particles floating
       gsap.to(".particle", {
         y: "random(-20, 20)",
         x: "random(-20, 20)",
@@ -44,7 +41,6 @@ const Loader = ({ onFinished }) => {
         },
       });
 
-      // Main animation sequence
       tl.from(circleRef.current, {
         duration: 1.5,
         scale: 0,
@@ -110,13 +106,11 @@ const Loader = ({ onFinished }) => {
       ref={container}
       className="fixed inset-0 bg-gradient-to-br from-[#F0E7CF] via-[#F5EDD5] to-[#F0E7CF] z-50 flex flex-col items-center justify-center"
     >
-      {/* Floating particles */}
       <div
         ref={particlesRef}
         className="absolute inset-0 overflow-hidden"
       ></div>
 
-      {/* Decorative circle */}
       <div
         ref={circleRef}
         className="absolute w-96 h-96 border border-black/10 rounded-full"
@@ -126,7 +120,6 @@ const Loader = ({ onFinished }) => {
         }}
       ></div>
 
-      {/* Logo */}
       <div className="relative z-10">
         <img
           ref={logoRef}
@@ -136,7 +129,6 @@ const Loader = ({ onFinished }) => {
         />
       </div>
 
-      {/* Animated text */}
       <div ref={textRef} className="relative z-10 mb-12">
         <h1 className="text-5xl font-serif text-black tracking-[0.3em]">
           {letters.map((letter, index) => (
@@ -147,7 +139,6 @@ const Loader = ({ onFinished }) => {
         </h1>
       </div>
 
-      {/* Progress bar */}
       <div className="relative z-10 w-64 h-0.5 bg-black/20 rounded-full overflow-hidden">
         <div
           ref={progressRef}
@@ -155,7 +146,6 @@ const Loader = ({ onFinished }) => {
         ></div>
       </div>
 
-      {/* Elegant tagline */}
       <p className="relative z-10 mt-6 text-sm text-black/60 tracking-wider uppercase">
         Crafting Time Since 1952
       </p>
@@ -170,11 +160,9 @@ export function App() {
 
   return (
     <div className="relative w-full max-h-screen">
-      {/* overlay loader */}
       <div className={`absolute inset-0 z-50 ${loading ? "" : "hidden"}`}>
         <Loader onFinished={() => setLoading(false)} />
       </div>
-      {/* main content (already mounted behind loader) */}
       {!loading && (
         <>
           <CardNav

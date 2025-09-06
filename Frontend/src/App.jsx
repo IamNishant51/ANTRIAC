@@ -40,14 +40,12 @@ const App = () => {
   ];
 
   useEffect(() => {
-    // Initialize Lenis
     const lenis = new Lenis({
-      duration: 1.2, // Smooth scroll duration
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing function
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smooth: true,
     });
 
-    // Animation frame loop for Lenis
     const raf = (time) => {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -55,7 +53,7 @@ const App = () => {
     requestAnimationFrame(raf);
 
     return () => {
-      lenis.destroy(); // Cleanup Lenis on unmount
+      lenis.destroy(); 
     };
   }, []);
 

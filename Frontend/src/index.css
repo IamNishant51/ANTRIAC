@@ -17,5 +17,5 @@ body {
 }
 
 [data-lenis] {
-  scroll-behavior: auto !important; /* Disable native smooth scrolling */
+  scroll-behavior: auto !important; 
 }
